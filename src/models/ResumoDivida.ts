@@ -1,7 +1,10 @@
 export interface ResumoDivida {
   id: number;
   nome: string;
-  totalDevido: number;
+  totalReceber: number;
+  totalRecebido: number;
+  saldoReceber: number;
+  totalPagar: number;
   totalPago: number;
-  saldo: number;
+  saldoPagar: number;
 }

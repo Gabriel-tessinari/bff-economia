@@ -8,33 +8,51 @@ import type { ResumoDivida } from "../models/ResumoDivida.js";
 
 export class DividaService {
   static async listaResumoDivida(): Promise<ResumoDivida[]> {
-    const [devedores, dividas, pagamentos]: [Pessoa[], Divida[], Pagamento[]] =
+    const [pessoas, dividas, pagamentos]: [Pessoa[], Divida[], Pagamento[]] =
       await Promise.all([
-        PessoaGateway.listarTodos(),
+        PessoaGateway.listarTodas(),
         DividaGateway.listarTodas(),
         PagamentoGateway.listarTodos(),
       ]);
 
-    return devedores.map((devedor: Pessoa): ResumoDivida => {
-      const dividasDevedor = dividas.filter(
-        (divida) => divida.devedorId === devedor.id
+    return pessoas.map((pessoa: Pessoa): ResumoDivida => {
+      const dividasPessoa = dividas.filter(
+        (divida) => divida.pessoaId === pessoa.id
       );
-      const totalDevido = dividasDevedor.reduce(
-        (acumulado, divida) => acumulado + divida.valor,
-        0
+
+      const idsReceber = new Set(
+        dividasPessoa.filter((d) => d.tipo === "RECEBER").map((d) => d.id)
       );
-      const idsDividas = new Set(dividasDevedor.map((divida) => divida.id));
+
+      const idsPagar = new Set(
+        dividasPessoa.filter((d) => d.tipo === "PAGAR").map((d) => d.id)
+      );
+
+      const totalReceber = dividasPessoa
+        .filter((d) => d.tipo === "RECEBER")
+        .reduce((acumulado, d) => acumulado + d.valor, 0);
+
+      const totalRecebido = pagamentos
+        .filter((p) => idsReceber.has(p.dividaId))
+        .reduce((acumulado, p) => acumulado + p.valor, 0);
+
+      const totalPagar = dividasPessoa
+        .filter((d) => d.tipo === "PAGAR")
+        .reduce((acumulado, d) => acumulado + d.valor, 0);
 
       const totalPago = pagamentos
-        .filter((p) => idsDividas.has(p.dividaId))
+        .filter((p) => idsPagar.has(p.dividaId))
         .reduce((acumulado, p) => acumulado + p.valor, 0);
 
       return {
-        id: devedor.id,
-        nome: devedor.nome,
-        totalDevido: totalDevido,
+        id: pessoa.id,
+        nome: pessoa.nome,
+        totalReceber: totalReceber,
+        totalRecebido: totalRecebido,
+        saldoReceber: totalReceber - totalRecebido,
+        totalPagar: totalPagar,
         totalPago: totalPago,
-        saldo: totalDevido - totalPago,
+        saldoPagar: totalPagar - totalPago,
       };
     });
   }

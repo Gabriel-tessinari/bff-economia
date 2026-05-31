@@ -1,11 +1,11 @@
 info:
-  name: listar resumo devedores
+  name: listar resumo dívidas
   type: http
   seq: 1
 
 http:
   method: GET
-  url: "{{host}}/devedores-resumo"
+  url: "{{host}}/dividas-resumo"
   auth: inherit
 
 settings:

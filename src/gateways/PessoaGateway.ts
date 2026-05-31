@@ -11,7 +11,7 @@ export class PessoaGateway {
     },
   });
 
-  static async listarTodos(): Promise<Pessoa[]> {
+  static async listarTodas(): Promise<Pessoa[]> {
     const { data } = await this.client.get<Pessoa[]>("");
     return data;
   }
