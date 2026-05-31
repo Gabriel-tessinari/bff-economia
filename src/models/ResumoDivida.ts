@@ -1,4 +1,4 @@
-export interface ResumoDevedor {
+export interface ResumoDivida {
   id: number;
   nome: string;
   totalDevido: number;

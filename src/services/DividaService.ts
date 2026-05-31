@@ -1,21 +1,21 @@
-import { DevedorGateway } from "../gateways/DevedorGateway.js";
 import { DividaGateway } from "../gateways/DividaGateway.js";
 import { PagamentoGateway } from "../gateways/PagamentoGateway.js";
-import type { Devedor } from "../models/Devedor.js";
+import { PessoaGateway } from "../gateways/PessoaGateway.js";
 import type { Divida } from "../models/Divida.js";
 import type { Pagamento } from "../models/Pagamento.js";
-import type { ResumoDevedor } from "../models/ResumoDevedor.js";
+import type { Pessoa } from "../models/Pessoa.js";
+import type { ResumoDivida } from "../models/ResumoDivida.js";
 
-export class DevedorService {
-  static async listaResumoDevedor(): Promise<ResumoDevedor[]> {
-    const [devedores, dividas, pagamentos]: [Devedor[], Divida[], Pagamento[]] =
+export class DividaService {
+  static async listaResumoDivida(): Promise<ResumoDivida[]> {
+    const [devedores, dividas, pagamentos]: [Pessoa[], Divida[], Pagamento[]] =
       await Promise.all([
-        DevedorGateway.listarTodos(),
+        PessoaGateway.listarTodos(),
         DividaGateway.listarTodas(),
         PagamentoGateway.listarTodos(),
       ]);
 
-    return devedores.map((devedor: Devedor): ResumoDevedor => {
+    return devedores.map((devedor: Pessoa): ResumoDivida => {
       const dividasDevedor = dividas.filter(
         (divida) => divida.devedorId === devedor.id
       );

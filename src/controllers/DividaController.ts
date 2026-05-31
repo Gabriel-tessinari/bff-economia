@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
-import { DevedorService } from "../services/DevedorService.js";
+import { DividaService } from "../services/DividaService.js";
 
-export class DevedorController {
-  static async listarResumoDevedor(req: Request, res: Response): Promise<void> {
+export class DividaController {
+  static async listarResumoDivida(req: Request, res: Response): Promise<void> {
     try {
-      const resumos = await DevedorService.listaResumoDevedor();
+      const resumos = await DividaService.listaResumoDivida();
       res.status(200).json(resumos);
     } catch (error: any) {
       if (error.response) {
@@ -19,7 +19,7 @@ export class DevedorController {
 
       if (error.request) {
         res.status(503).json({
-          error: "Serviço Devedor indisponível ou erro de rede.",
+          error: "Serviço Dívida indisponível ou erro de rede.",
         });
         return;
       }

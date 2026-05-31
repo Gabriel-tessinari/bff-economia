@@ -1,4 +1,4 @@
-export interface Devedor {
+export interface Pessoa {
   id: number;
   nome: string;
 }
