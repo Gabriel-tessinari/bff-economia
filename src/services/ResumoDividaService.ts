@@ -6,7 +6,7 @@ import type { Pagamento } from "../models/Pagamento.js";
 import type { Pessoa } from "../models/Pessoa.js";
 import type { ResumoDivida } from "../models/ResumoDivida.js";
 
-export class DividaService {
+export class ResumoDividaService {
   static async listaResumoDivida(): Promise<ResumoDivida[]> {
     const [pessoas, dividas, pagamentos]: [Pessoa[], Divida[], Pagamento[]] =
       await Promise.all([
