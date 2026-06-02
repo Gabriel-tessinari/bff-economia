@@ -1,0 +1,21 @@
+info:
+  name: atualizar pessoa
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{host}}/pessoas/5"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Teste Atualizado"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
