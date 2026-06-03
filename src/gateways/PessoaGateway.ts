@@ -15,4 +15,14 @@ export class PessoaGateway {
     const { data } = await this.client.get<Pessoa[]>("");
     return data;
   }
+
+  static async criar(pessoa: Pessoa): Promise<Pessoa> {
+    const { data } = await this.client.post<Pessoa>("", pessoa);
+    return data;
+  }
+
+  static async atualizar(id: number, pessoa: Pessoa): Promise<Pessoa> {
+    const { data } = await this.client.put<Pessoa>(`/${id}`, pessoa);
+    return data;
+  }
 }

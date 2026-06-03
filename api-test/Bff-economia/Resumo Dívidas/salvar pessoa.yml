@@ -1,0 +1,21 @@
+info:
+  name: salvar pessoa
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{host}}/pessoas"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Teste"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
