@@ -9,7 +9,7 @@ export class ResumoDividaController {
       const resumos = await ResumoDividaService.listaResumoDivida();
       res.status(200).json(resumos);
     } catch (error) {
-      ErrorHandler.lidarComErroAxios(error, res, "Listar Resumo");
+      ErrorHandler.lidarComErroAxios(error, res, "Listar Resumo Dívida");
     }
   }
 
@@ -24,8 +24,7 @@ export class ResumoDividaController {
 
   static async atualizarPessoa(req: Request, res: Response): Promise<void> {
     try {
-      const idParam = String(req.params.id);
-      const id = parseInt(idParam);
+      const id = parseInt(String(req.params.id));
 
       if (isNaN(id)) {
         res.status(400).json({ error: "ID inválido." });

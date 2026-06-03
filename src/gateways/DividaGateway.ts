@@ -15,4 +15,9 @@ export class DividaGateway {
     const { data } = await this.client.get<Divida[]>("");
     return data;
   }
+
+  static async listarPorPessoaId(pessoaId: number): Promise<Divida[]> {
+    const { data } = await this.client.get<Divida[]>(`/pessoa/${pessoaId}`);
+    return data;
+  }
 }

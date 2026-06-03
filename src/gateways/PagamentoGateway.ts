@@ -15,4 +15,14 @@ export class PagamentoGateway {
     const { data } = await this.client.get<Pagamento[]>("");
     return data;
   }
+
+  static async listarPorDividaIds(dividaIds: number[]): Promise<Pagamento[]> {
+    if (!dividaIds || dividaIds.length === 0) return [];
+    const idsParam = dividaIds.join(",");
+    const { data } = await this.client.get<Pagamento[]>("", {
+      params: { dividaIds: idsParam },
+    });
+
+    return data;
+  }
 }
