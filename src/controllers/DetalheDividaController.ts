@@ -20,7 +20,7 @@ export class DetalheDividaController {
     }
   }
 
-  static async criar(req: Request, res: Response): Promise<void> {
+  static async criarDivida(req: Request, res: Response): Promise<void> {
     try {
       const novaDivida = await DividaGateway.criar(req.body);
       res.status(201).json(novaDivida);
@@ -29,7 +29,7 @@ export class DetalheDividaController {
     }
   }
 
-  static async atualizar(req: Request, res: Response): Promise<void> {
+  static async atualizarDivida(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(String(req.params.id));
 

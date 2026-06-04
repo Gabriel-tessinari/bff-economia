@@ -1,0 +1,27 @@
+info:
+  name: atualizar dívida
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{host}}/dividas/3"
+  body:
+    type: json
+    data: |-
+      {
+        "id": 3,
+        "descricao": "Empréstimo para médico da Ana",
+        "valor": 600,
+        "data": "2026-03-11",
+        "observacao": "Devolver para o Cofrinho Viagens",
+        "tipo": "RECEBER",
+        "pessoaId": 2
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

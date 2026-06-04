@@ -22,12 +22,12 @@ export class DividaGateway {
   }
 
   static async criar(divida: Divida): Promise<Divida> {
-    const { data } = await this.client.post<Divida>(`/dividas`, divida);
+    const { data } = await this.client.post<Divida>("", divida);
     return data;
   }
 
   static async atualizar(id: number, divida: Divida): Promise<Divida> {
-    const { data } = await this.client.put<Divida>(`/dividas/${id}`, divida);
+    const { data } = await this.client.put<Divida>(`/${id}`, divida);
     return data;
   }
 }
