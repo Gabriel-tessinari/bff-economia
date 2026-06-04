@@ -44,15 +44,17 @@ export class ResumoDividaService {
         .filter((p) => idsPagar.has(p.dividaId))
         .reduce((acumulado, p) => acumulado + p.valor, 0);
 
+      const saldoReceber = totalReceber - totalRecebido;
+      const saldoPagar = totalPagar - totalPago;
+
       return {
-        id: pessoa.id,
-        nome: pessoa.nome,
-        totalReceber: totalReceber,
-        totalRecebido: totalRecebido,
-        saldoReceber: totalReceber - totalRecebido,
-        totalPagar: totalPagar,
-        totalPago: totalPago,
-        saldoPagar: totalPagar - totalPago,
+        totalReceber,
+        totalRecebido,
+        saldoReceber,
+        totalPagar,
+        totalPago,
+        saldoPagar,
+        pessoa,
       };
     });
   }
