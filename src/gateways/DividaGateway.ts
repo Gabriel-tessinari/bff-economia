@@ -15,4 +15,19 @@ export class DividaGateway {
     const { data } = await this.client.get<Divida[]>("");
     return data;
   }
+
+  static async listarPorPessoaId(pessoaId: number): Promise<Divida[]> {
+    const { data } = await this.client.get<Divida[]>(`/pessoa/${pessoaId}`);
+    return data;
+  }
+
+  static async criar(divida: Divida): Promise<Divida> {
+    const { data } = await this.client.post<Divida>("", divida);
+    return data;
+  }
+
+  static async atualizar(id: number, divida: Divida): Promise<Divida> {
+    const { data } = await this.client.put<Divida>(`/${id}`, divida);
+    return data;
+  }
 }

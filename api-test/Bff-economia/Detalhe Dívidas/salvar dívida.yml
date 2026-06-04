@@ -1,0 +1,26 @@
+info:
+  name: salvar dívida
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{host}}/dividas"
+  body:
+    type: json
+    data: |-
+      {
+        "descricao": "Empréstimo para exame da Ana",
+        "valor": 1000,
+        "data": "2023-06-18",
+        "observacao": "Devolver para Reserva de Emergência",
+        "tipo": "RECEBER",
+        "pessoaId": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

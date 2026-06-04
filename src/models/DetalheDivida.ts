@@ -1,6 +1,7 @@
+import type { Divida } from "./Divida.js";
 import type { Pessoa } from "./Pessoa.js";
 
-export interface ResumoDivida {
+export interface DetalheDivida {
   totalReceber: number;
   totalRecebido: number;
   saldoReceber: number;
@@ -8,4 +9,5 @@ export interface ResumoDivida {
   totalPago: number;
   saldoPagar: number;
   pessoa: Pessoa;
+  dividas: Divida[];
 }

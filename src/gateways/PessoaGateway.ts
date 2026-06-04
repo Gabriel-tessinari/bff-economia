@@ -16,6 +16,11 @@ export class PessoaGateway {
     return data;
   }
 
+  static async buscarPorId(id: number): Promise<Pessoa> {
+    const { data } = await this.client.get<Pessoa>(`/${id}`);
+    return data;
+  }
+
   static async criar(pessoa: Pessoa): Promise<Pessoa> {
     const { data } = await this.client.post<Pessoa>("", pessoa);
     return data;
