@@ -30,4 +30,14 @@ export class PagamentoGateway {
 
     return data;
   }
+
+  static async criar(pagamento: Pagamento): Promise<Pagamento> {
+    const { data } = await this.client.post<Pagamento>("", pagamento);
+    return data;
+  }
+
+  static async atualizar(id: number, pagamento: Pagamento): Promise<Pagamento> {
+    const { data } = await this.client.put<Pagamento>(`/${id}`, pagamento);
+    return data;
+  }
 }
