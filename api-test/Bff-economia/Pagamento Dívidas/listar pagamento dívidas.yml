@@ -1,11 +1,11 @@
 info:
-  name: listar detalhe dívida
+  name: listar pagamento dívidas
   type: http
   seq: 1
 
 http:
   method: GET
-  url: "{{host}}/detalhe-dividas/pessoa/3"
+  url: "{{host}}/pagamento-dividas/divida/4"
   auth: inherit
 
 settings:

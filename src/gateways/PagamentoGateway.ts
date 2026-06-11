@@ -16,6 +16,11 @@ export class PagamentoGateway {
     return data;
   }
 
+  static async listarPorDividaId(dividaId: number): Promise<Pagamento[]> {
+    const { data } = await this.client.get<Pagamento[]>(`/divida/${dividaId}`);
+    return data;
+  }
+
   static async listarPorDividaIds(dividaIds: number[]): Promise<Pagamento[]> {
     if (!dividaIds || dividaIds.length === 0) return [];
     const idsParam = dividaIds.join(",");
@@ -23,6 +28,16 @@ export class PagamentoGateway {
       params: { dividaIds: idsParam },
     });
 
+    return data;
+  }
+
+  static async criar(pagamento: Pagamento): Promise<Pagamento> {
+    const { data } = await this.client.post<Pagamento>("", pagamento);
+    return data;
+  }
+
+  static async atualizar(id: number, pagamento: Pagamento): Promise<Pagamento> {
+    const { data } = await this.client.put<Pagamento>(`/${id}`, pagamento);
     return data;
   }
 }

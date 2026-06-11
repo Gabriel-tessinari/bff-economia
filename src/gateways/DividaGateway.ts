@@ -21,6 +21,11 @@ export class DividaGateway {
     return data;
   }
 
+  static async buscarPorId(id: number): Promise<Divida> {
+    const { data } = await this.client.get<Divida>(`/${id}`);
+    return data;
+  }
+
   static async criar(divida: Divida): Promise<Divida> {
     const { data } = await this.client.post<Divida>("", divida);
     return data;
